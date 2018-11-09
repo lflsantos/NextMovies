@@ -1,0 +1,187 @@
+ [{
+  "title": "Vingadores: Guerra Infinita",
+  "categories": ["Action", "Adventure", "Fantasy"],
+  "duration": "2h 29min",
+  "rating": 8.8,
+  "description": "",
+  "image": "avengers",
+  "item_type": "movie"
+  },
+  {
+  "title": "Deadpool 2",
+  "categories": ["Action", "Adventure", "Comedy"],
+  "duration": "1h 59min",
+  "rating": 8.1,
+  "description": "Foul-mouthed mutant mercenary Wade Wilson (AKA. Deadpool), brings together a team of fellow mutant rogues to protect a young boy with supernatural abilities from the brutal, time-traveling cyborg, Cable.",
+  "image": "deadpool2",
+  "item_type": "movie"
+  },
+  {
+  "title": "Han Solo: Uma História Star Wars",
+  "categories": ["Action", "Adventure", "Fantasy"],
+  "duration": "2h 15min",
+  "rating": 7.2,
+  "description": "During an adventure into the criminal underworld, Han Solo meets his future copilot Chewbacca and encounters Lando Calrissian years before joining the Rebellion.",
+  "image": "hansolo",
+  "item_type": "movie"
+  },
+  {
+  "title": "Lançamentos em filmes e séries",
+  "item_type": "list",
+  "items": [{
+            "title": "Vingadores",
+            "image": "avengers"
+            },
+            {
+            "title": "Han Solo",
+            "image": "hansolo"
+            },
+            {
+            "title": "matrix",
+            "image": "matrix"
+            },
+            {
+            "title": "shapewater",
+            "image": "shapewater"
+            },
+            {
+            "title": "toystory3",
+            "image": "toystory3"
+            },
+            {
+            "title": "deadpool2",
+            "image": "deadpool2"
+            },
+            {
+            "title": "Jurassic World",
+            "image": "jurassic"},
+            {
+            "title": "Vingadores",
+            "image": "avengers"
+            },
+            {
+            "title": "Han Solo",
+            "image": "hansolo"
+            },
+            {
+            "title": "matrix",
+            "image": "matrix"
+            },
+            {
+            "title": "shapewater",
+            "image": "shapewater"
+            },
+            {
+            "title": "toystory3",
+            "image": "toystory3"
+            },
+            {
+            "title": "deadpool2",
+            "image": "deadpool2"
+            },
+            {
+            "title": "Jurassic World",
+            "image": "jurassic"},
+            {
+            "title": "Vingadores",
+            "image": "avengers"
+            },
+            {
+            "title": "Han Solo",
+            "image": "hansolo"
+            },
+            {
+            "title": "matrix",
+            "image": "matrix"
+            },
+            {
+            "title": "shapewater",
+            "image": "shapewater"
+            },
+            {
+            "title": "toystory3",
+            "image": "toystory3"
+            },
+            {
+            "title": "deadpool2",
+            "image": "deadpool2"
+            },
+            {
+            "title": "Jurassic World",
+            "image": "jurassic"},
+            {
+            "title": "Vingadores",
+            "image": "avengers"
+            },
+            {
+            "title": "Han Solo",
+            "image": "hansolo"
+            },
+            {
+            "title": "matrix",
+            "image": "matrix"
+            },
+            {
+            "title": "shapewater",
+            "image": "shapewater"
+            },
+            {
+            "title": "toystory3",
+            "image": "toystory3"
+            },
+            {
+            "title": "deadpool2",
+            "image": "deadpool2"
+            },
+            {
+            "title": "Jurassic World",
+            "image": "jurassic"}]
+  },
+  
+  
+  {
+  "title": "Jurassic World: Reino Ameaçado",
+  "categories": ["Action", "Adventure", "Sci-Fi"],
+  "duration": "2h 8min",
+  "rating": 6.8,
+  "description": "When the island's dormant volcano begins roaring to life, Owen and Claire mount a campaign to rescue the remaining dinosaurs from this extinction-level event.",
+  "image": "jurassic",
+  "item_type": "movie"
+  },
+  {
+  "title": "Matrix",
+  "categories": ["Action", "Sci-Fi"],
+  "duration": "2h 19min",
+  "rating": 8.7,
+  "description": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
+  "image": "matrix",
+  "item_type": "movie"
+  },
+  {
+  "title": "Jogador Nº 1",
+  "categories": ["Action", "Adventure", "Sci-Fi"],
+  "duration": "2h 20min",
+  "rating": 7.8,
+  "description": "When the creator of a virtual reality world called the OASIS dies, he releases a video in which he challenges all OASIS users to find his Easter Egg, which will give the finder his fortune.",
+  "image": "readyplayer1",
+  "item_type": "movie"
+  },
+  {
+  "title": "A Forma da Água",
+  "categories": ["Adventure", "Drama", "Fantasy"],
+  "duration": "2h 3min",
+  "rating": 7.4,
+  "description": "At a top secret research facility in the 1960s, a lonely janitor forms a unique relationship with an amphibious creature that is being held in captivity.",
+  "image": "shapewater",
+  "item_type": "movie"
+  },
+  {
+  "title": "Toy Story 3",
+  "categories": ["Animation", "Adventure", "Comedy"],
+  "duration": "1h 43min",
+  "rating": 8.3,
+  "description": "The toys are mistakenly delivered to a day-care center instead of the attic right before Andy leaves for college, and it's up to Woody to convince the other toys that they weren't abandoned and to return home.",
+  "image": "toystory3",
+  "item_type": "movie"
+  }
+  ]
