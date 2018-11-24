@@ -11,11 +11,14 @@ import CoreData
 
 class MoviesListTableViewController: UITableViewController {
 
+    // MARK: - IBOutlets
     @IBOutlet var emptyMoviesView: UIView!
 
+    // MARK: - Properties
     var fetchedResultController: NSFetchedResultsController<Movie>?
     var movies: [MovieModel] = []
 
+    // MARK: - Super Methods
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -26,6 +29,7 @@ class MoviesListTableViewController: UITableViewController {
         loadMoviesCoreData()
     }
 
+    // MARK: - Methods
     private func loadMoviesCoreData() {
         let fetchRequest: NSFetchRequest<Movie> = Movie.fetchRequest()
         let sortDescriptor = NSSortDescriptor(keyPath: \Movie.title, ascending: true)
@@ -83,14 +87,6 @@ class MoviesListTableViewController: UITableViewController {
         return cell
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let movieDetailViewController = segue.destination as? MovieDetailViewController,
-            let indexPath = tableView.indexPathForSelectedRow,
-            let movie = fetchedResultController?.object(at: indexPath) {
-            movieDetailViewController.movie = movie
-        }
-    }
-
     override func tableView(_ tableView: UITableView,
                             commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
@@ -98,6 +94,15 @@ class MoviesListTableViewController: UITableViewController {
             guard let movie = fetchedResultController?.object(at: indexPath) else { return }
             context.delete(movie)
             saveContext()
+        }
+    }
+
+    // MARK: - Navigation Methods
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let movieDetailViewController = segue.destination as? MovieDetailViewController,
+            let indexPath = tableView.indexPathForSelectedRow,
+            let movie = fetchedResultController?.object(at: indexPath) {
+            movieDetailViewController.movie = movie
         }
     }
 }

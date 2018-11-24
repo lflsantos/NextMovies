@@ -10,6 +10,7 @@ import UIKit
 
 class MovieDetailViewController: UIViewController {
 
+    // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
             scrollView.delegate = self
@@ -24,14 +25,17 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var lblSinopse: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
 
+    // MARK: - Properties
     var movie: Movie!
 
+    // MARK: - Super Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setViews()
     }
 
+    // MARK: - Methods
     func setViews() {
         if let posterData = movie.poster {
             ivPoster.image = UIImage(data: posterData)
@@ -41,18 +45,20 @@ class MovieDetailViewController: UIViewController {
         guard let allMoviesGenres = movie.genre?.allObjects as? [Genre] else { return }
         for genre in allMoviesGenres {
             if let name = genre.name {
-                genreString.append(name + "|")
+                genreString.append(name + " | ")
             }
         }
+        lblGenres.text = genreString
         lblDuration.text = movie.duration
         lblRating.text = movie.formattedRating
         lblSinopse.text = movie.summary == "" ? "" : "Sinopse"
         lblDescription.text = movie.summary
     }
 
+    // MARK: - Navigation Methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let registerMoviewVC = segue.destination as? RegisterMovieViewController {
-            registerMoviewVC.movie = movie
+        if let registerMovieVC = segue.destination as? RegisterMovieViewController {
+            registerMovieVC.movie = movie
         }
     }
 }

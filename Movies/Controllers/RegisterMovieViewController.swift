@@ -9,8 +9,9 @@
 import UIKit
 
 class RegisterMovieViewController: UIViewController {
-    @IBOutlet weak var scrollView: UIScrollView!
 
+    // MARK: - IBOutlets
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tfTitle: UITextField!
     @IBOutlet weak var lblGenres: UILabel!
     @IBOutlet weak var tfHour: UITextField!
@@ -20,9 +21,21 @@ class RegisterMovieViewController: UIViewController {
     @IBOutlet weak var tvDescription: UITextView!
     @IBOutlet weak var ivPoster: UIImageView!
 
+    // MARK: - Properties
     var movie: Movie!
-    var genres: [Genre] = []
+    var genres: [Genre] = [] {
+        didSet {
+            var genreString = ""
+            for genre in genres {
+                if let name = genre.name {
+                    genreString.append(name + "\n")
+                }
+            }
+            lblGenres.text = genreString
+        }
+    }
 
+    // MARK: - Super Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,10 +56,7 @@ class RegisterMovieViewController: UIViewController {
                                                object: nil)
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-
+    // MARK: - Methods
     func setTitle() {
         if movie != nil {
             title = "Edit Movie"
@@ -85,7 +95,13 @@ class RegisterMovieViewController: UIViewController {
         if let posterData = movie.poster {
             ivPoster.image = UIImage(data: posterData)
         }
+    }
 
+    func selectPicture(sourceType: UIImagePickerController.SourceType) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = sourceType
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
     }
 
     // MARK: - Keyboard Methods
@@ -102,6 +118,7 @@ class RegisterMovieViewController: UIViewController {
         scrollView.scrollIndicatorInsets.bottom = 0
     }
 
+    // MARK: - IBActions
     @IBAction func ratingChanged(_ sender: UISlider) {
         DispatchQueue.main.async {
             self.lblRating.text = String(format: "%.1f", sender.value)
@@ -134,13 +151,6 @@ class RegisterMovieViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    func selectPicture(sourceType: UIImagePickerController.SourceType) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = sourceType
-        imagePicker.delegate = self
-        present(imagePicker, animated: true, completion: nil)
-    }
-
     @IBAction func save(_ sender: Any) {
         if movie == nil {
             movie = Movie(context: context)
@@ -152,9 +162,19 @@ class RegisterMovieViewController: UIViewController {
         movie.summary = tvDescription.text
         movie.rating = sliderRating.value
         movie.poster = ivPoster.image?.pngData()
+        movie.genre = NSSet(array: genres)
 
         saveContext()
         navigationController?.popViewController(animated: true)
+    }
+
+    // MARK: - Navigation Methods
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showGenres" {
+            guard let genresVC = segue.destination as? GenresTableViewController else { return }
+            genresVC.genres = genres
+            genresVC.delegate = self
+        }
     }
 }
 
@@ -164,12 +184,19 @@ extension RegisterMovieViewController: UIImagePickerControllerDelegate, UINaviga
         guard let image = info[.originalImage] as? UIImage else { return }
 
         let smallSize = CGSize(width: 300, height: 300)
-        UIGraphicsBeginImageContext(smallSize)
+        UIGraphicsBeginImageContextWithOptions(smallSize, false, 0.0)
+//        UIGraphicsBeginImageContext(smallSize)
         image.draw(in: CGRect(x: 0, y: 0, width: smallSize.width, height: smallSize.height))
         let smallImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         ivPoster.image = smallImage
 
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension RegisterMovieViewController: GenreSelectionDelegate {
+    func didSelect(Genres genres: [Genre]) {
+        self.genres = genres
     }
 }

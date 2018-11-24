@@ -37,7 +37,13 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="i3j-nr-lUn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.20000000000000001" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="CAs-Nf-G2q">
+                            <rect key="frame" x="0.0" y="211" width="320" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="movieCell" rowHeight="183" id="Q07-IF-jR3" customClass="MovieTableViewCell" customModule="Movies" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="183"/>
@@ -190,8 +196,8 @@
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="748" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehu-bE-jE1">
-                                                                <rect key="frame" x="129.5" y="15" width="76.5" height="0.0"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="748" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehu-bE-jE1">
+                                                                <rect key="frame" x="129.5" y="5" width="76.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -204,10 +210,13 @@
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="selectGenres:" destination="CYa-rn-VRW" eventType="touchUpInside" id="aYZ-cx-aVX"/>
-                                                                    <segue destination="Eei-5u-p84" kind="show" id="lRC-ow-WX3"/>
+                                                                    <segue destination="Eei-5u-p84" kind="show" identifier="showGenres" id="lRC-ow-WX3"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="ehu-bE-jE1" firstAttribute="top" secondItem="cus-d7-hKO" secondAttribute="top" id="qaZ-U6-U1C"/>
+                                                        </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="x7Q-zE-svq">
                                                         <rect key="frame" x="0.0" y="80" width="270" height="30"/>
@@ -424,7 +433,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R5g-bK-ElQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3442.5" y="-547.18309859154931"/>
+            <point key="canvasLocation" x="3594" y="-547"/>
         </scene>
         <!--Movie Detail View Controller-->
         <scene sceneID="Gnq-z0-3c1">
@@ -593,6 +602,6 @@
         <image name="avengerssmall" width="260" height="330"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ecq-Ts-ZiF"/>
+        <segue reference="2Qr-HM-e8z"/>
     </inferredMetricsTieBreakers>
 </document>
