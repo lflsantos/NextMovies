@@ -27,7 +27,16 @@ class MovieTableViewCell: UITableViewCell {
         ivPoster.image = nil
     }
     
-    func prepareCell (with movie: Movie) {
+    func prepareCell(with movie: Movie) {
+        lblTitle.text = movie.title
+        lblSinopse.text = movie.summary
+        lblRating.text = movie.formattedRating
+        if let posterData = movie.poster {
+            ivPoster.image = UIImage(data: posterData)
+        }
+    }
+    
+    func prepareCell (with movie: MovieModel) {
         lblTitle.text = movie.title
         lblSinopse.text = movie.summary
         lblRating.text = movie.formattedRating

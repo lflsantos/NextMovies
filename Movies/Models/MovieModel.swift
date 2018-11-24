@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Movie: Codable {
+struct MovieModel: Codable {
     let title: String
     let categories: [String]?
     let duration: String?
@@ -16,7 +16,7 @@ struct Movie: Codable {
     let image: String?
     let itemType: ItemType?
     let summary: String?
-    let items: [Movie]?
+    let items: [MovieModel]?
     
     var formattedRating: String {
         return "⭐️ \(rating ?? 0.0)"

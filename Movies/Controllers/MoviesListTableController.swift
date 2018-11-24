@@ -7,17 +7,41 @@
 //
 
 import UIKit
+import CoreData
 
 class MoviesListTableViewController: UITableViewController {
 
     
     @IBOutlet var emptyMoviesView: UIView!
     
-    var movies: [Movie] = []
+    var fetchedResultController: NSFetchedResultsController<Movie>?
+    var movies: [MovieModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadMovies()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        loadMoviesCoreData()
+    }
+    
+    private func loadMoviesCoreData() {
+        let fetchRequest: NSFetchRequest<Movie> = Movie.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(keyPath: \Movie.title, ascending: true)
+        
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultController?.delegate = self
+        
+        do {
+            try fetchedResultController?.performFetch()
+        } catch {
+            print(error)
+        }
+        
     }
     
     private func loadMovies() {
@@ -26,7 +50,7 @@ class MoviesListTableViewController: UITableViewController {
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             do{
                 let movieData = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                movies = try decoder.decode([Movie].self, from: movieData)
+                movies = try decoder.decode([MovieModel].self, from: movieData)
                 tableView.reloadData()
             } catch {
                 print(error)
@@ -36,40 +60,42 @@ class MoviesListTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(movies.count == 0){
+        let nMovies = fetchedResultController?.fetchedObjects?.count ?? 0
+        if(nMovies == 0){
             emptyMoviesView.frame = view.bounds
             self.view.addSubview(emptyMoviesView)
         }
-        return movies.count
+        return nMovies
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let movieType = movies[indexPath.row].itemType else { return UITableViewCell()}
-        let movie = movies[indexPath.row]
-        switch movieType{
-        case ItemType.list:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath) as? ListTableViewCell else { return UITableViewCell() }
-            if let movies = movie.items {
-                cell.setMovies(movies, with: movie.title)
-            }
-            cell.selectionStyle = .none
-            return cell
-        case ItemType.movie:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as? MovieTableViewCell else { return UITableViewCell() }
-            cell.prepareCell(with: movie)
-            cell.selectionStyle = .none
-            return cell
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as? MovieTableViewCell else { return UITableViewCell() }
+        
+        guard let movie = fetchedResultController?.object(at: indexPath) else { return cell }
+        cell.prepareCell(with: movie)
+        cell.selectionStyle = .none
+        return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is MovieDetailViewController {
-            let vc = segue.destination as? MovieDetailViewController
-            guard let row = tableView.indexPathForSelectedRow?.row else { return }
-            vc?.movie = movies[row]
+        if let vc = segue.destination as? MovieDetailViewController, let indexPath = tableView.indexPathForSelectedRow, let movie = fetchedResultController?.object(at: indexPath) {
+            vc.movie = movie
+        }
+
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            guard let movie = fetchedResultController?.object(at: indexPath) else { return }
+            context.delete(movie)
+            saveContext()
         }
     }
-
-
 }
 
+extension MoviesListTableViewController : NSFetchedResultsControllerDelegate {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        tableView.reloadData()
+    }
+}

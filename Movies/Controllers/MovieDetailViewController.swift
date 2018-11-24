@@ -25,7 +25,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var lblSinopse: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     
-    var movie: Movie?
+    var movie: Movie!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +34,16 @@ class MovieDetailViewController: UIViewController {
     }
     
     func setViews(){
-        guard let movie = movie else { return }
-        ivPoster.image = UIImage(named: movie.image ?? "")
+        if let posterData = movie.poster {
+            ivPoster.image = UIImage(data: posterData)
+        }
         lblTitle.text = movie.title
-        lblGenres.text = movie.categories?.joined(separator: " | ")
+        var genreString = ""
+        for genre in movie.genre?.allObjects as! [Genre]{
+            if let name = genre.name {
+                genreString.append(name + "|")
+            }
+        }
         lblDuration.text = movie.duration
         lblRating.text = movie.formattedRating
         lblSinopse.text = movie.summary == "" ? "" : "Sinopse"
@@ -45,9 +51,8 @@ class MovieDetailViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is RegisterMovieViewController {
-            let vc = segue.destination as? RegisterMovieViewController
-            vc?.movie = movie
+        if let vc = segue.destination as? RegisterMovieViewController {
+            vc.movie = movie
         }
     }
 }
