@@ -9,24 +9,24 @@
 import UIKit
 
 class MovieTableViewCell: UITableViewCell {
-    
+
     @IBOutlet weak var ivPoster: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblSinopse: UILabel!
     @IBOutlet weak var lblRating: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     override func prepareForReuse() {
         ivPoster.image = nil
     }
-    
+
     func prepareCell(with movie: Movie) {
         lblTitle.text = movie.title
         lblSinopse.text = movie.summary
@@ -35,13 +35,11 @@ class MovieTableViewCell: UITableViewCell {
             ivPoster.image = UIImage(data: posterData)
         }
     }
-    
+
     func prepareCell (with movie: MovieModel) {
         lblTitle.text = movie.title
         lblSinopse.text = movie.summary
         lblRating.text = movie.formattedRating
         ivPoster.image = UIImage(named: movie.image ?? "")
     }
-
-
 }

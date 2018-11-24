@@ -17,16 +17,13 @@ struct MovieModel: Codable {
     let itemType: ItemType?
     let summary: String?
     let items: [MovieModel]?
-    
     var formattedRating: String {
         return "⭐️ \(rating ?? 0.0)"
     }
-    
     var smallImage: String? {
         guard let image = image else { return nil }
         return image + "small"
     }
-    
     enum CodingKeys: String, CodingKey {
         case title
         case categories
@@ -40,6 +37,6 @@ struct MovieModel: Codable {
 }
 
 enum ItemType: String, Codable {
-    case movie = "movie"
-    case list = "list"
+    case movie
+    case list
 }

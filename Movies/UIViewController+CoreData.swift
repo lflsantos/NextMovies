@@ -12,16 +12,17 @@ import CoreData
 
 extension UIViewController {
     var appDelegate: AppDelegate {
+        // This unwrap will never fail, we want the app to crash if it does
+        // swiftlint:disable force_cast
         return UIApplication.shared.delegate as! AppDelegate
+        // swiftlint:enable force_cast
     }
-    
     var context: NSManagedObjectContext {
         return appDelegate.persistentContainer.viewContext
     }
-    
     func saveContext() {
-        if context.hasChanges{
-            do{
+        if context.hasChanges {
+            do {
                 try context.save()
             } catch {
                 print("Error o salvar contexto: ", error)
@@ -29,4 +30,3 @@ extension UIViewController {
         }
     }
 }
-

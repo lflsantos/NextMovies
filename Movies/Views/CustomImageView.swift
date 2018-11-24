@@ -19,7 +19,6 @@ import UIKit
             layer.borderWidth = borderWidth
         }
     }
-    
     @IBInspectable var borderColor: UIColor? {
         get {
             return UIColor(cgColor: layer.borderColor!)
