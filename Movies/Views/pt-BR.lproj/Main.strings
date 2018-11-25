@@ -1,0 +1,84 @@
+
+/* Class = "UILabel"; text = "Duration"; ObjectID = "4e7-Qp-QCQ"; */
+"4e7-Qp-QCQ.text" = "Duration";
+
+/* Class = "UILabel"; text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lobortis elementum nibh tellus molestie nunc non. Mauris vitae ultricies leo integer malesuada nunc vel risus. Elit ullamcorper dignissim cras tincidunt lobortis. Donec enim diam vulputate ut. Proin fermentum leo vel orci porta non pulvinar neque laoreet. Mattis pellentesque id nibh tortor. Gravida in fermentum et sollicitudin. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue. Fermentum posuere urna nec tincidunt praesent semper feugiat nibh sed. Suspendisse sed nisi lacus sed. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Malesuada pellentesque elit eget gravida cum sociis natoque. Feugiat nibh sed pulvinar proin gravida hendrerit. Integer quis auctor elit sed vulputate mi sit amet mauris. Arcu vitae elementum curabitur vitae nunc. Semper viverra nam libero justo. Porttitor lacus luctus accumsan tortor posuere ac."; ObjectID = "4oE-CI-kFm"; */
+"4oE-CI-kFm.text" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lobortis elementum nibh tellus molestie nunc non. Mauris vitae ultricies leo integer malesuada nunc vel risus. Elit ullamcorper dignissim cras tincidunt lobortis. Donec enim diam vulputate ut. Proin fermentum leo vel orci porta non pulvinar neque laoreet. Mattis pellentesque id nibh tortor. Gravida in fermentum et sollicitudin. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue. Fermentum posuere urna nec tincidunt praesent semper feugiat nibh sed. Suspendisse sed nisi lacus sed. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Malesuada pellentesque elit eget gravida cum sociis natoque. Feugiat nibh sed pulvinar proin gravida hendrerit. Integer quis auctor elit sed vulputate mi sit amet mauris. Arcu vitae elementum curabitur vitae nunc. Semper viverra nam libero justo. Porttitor lacus luctus accumsan tortor posuere ac.";
+
+/* Class = "UILabel"; text = "Sinopse"; ObjectID = "6XI-s9-aw6"; */
+"6XI-s9-aw6.text" = "Sinopse";
+
+/* Class = "UINavigationItem"; title = "Movies"; ObjectID = "7Yf-cR-V0F"; */
+"7Yf-cR-V0F.title" = "Movies";
+
+/* Class = "UILabel"; text = "Movie Title"; ObjectID = "8qm-rT-T8k"; */
+"8qm-rT-T8k.text" = "Movie Title";
+
+/* Class = "UINavigationItem"; title = "Genres"; ObjectID = "AHc-wO-got"; */
+"AHc-wO-got.title" = "Genres";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "Cvo-al-vIJ"; */
+"Cvo-al-vIJ.title" = "Title";
+
+/* Class = "UILabel"; text = "5.0"; ObjectID = "Eis-zP-t1f"; */
+"Eis-zP-t1f.text" = "5.0";
+
+/* Class = "UILabel"; text = "Nota"; ObjectID = "Etc-FI-LOm"; */
+"Etc-FI-LOm.text" = "Nota";
+
+/* Class = "UILabel"; text = "Image"; ObjectID = "FTh-mg-Cz4"; */
+"FTh-mg-Cz4.text" = "Image";
+
+/* Class = "UITextField"; placeholder = "Minutes"; ObjectID = "Fur-m4-SUH"; */
+"Fur-m4-SUH.placeholder" = "Minutes";
+
+/* Class = "UIButton"; normalTitle = "Select Image"; ObjectID = "GYU-Kq-iqa"; */
+"GYU-Kq-iqa.normalTitle" = "Select Image";
+
+/* Class = "UILabel"; text = "Rating"; ObjectID = "HTM-cq-ols"; */
+"HTM-cq-ols.text" = "Rating";
+
+/* Class = "UILabel"; text = "Genres"; ObjectID = "ORY-CR-rcc"; */
+"ORY-CR-rcc.text" = "Genres";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "Pqu-oz-wlz"; */
+"Pqu-oz-wlz.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UILabel"; text = "Título do Filme"; ObjectID = "QBG-ky-gbi"; */
+"QBG-ky-gbi.text" = "Título do Filme";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "TTR-3X-30o"; */
+"TTR-3X-30o.text" = "Description";
+
+/* Class = "UITextField"; placeholder = "Hours"; ObjectID = "arK-JK-N0i"; */
+"arK-JK-N0i.placeholder" = "Hours";
+
+/* Class = "UILabel"; text = "Categories"; ObjectID = "cus-d7-hKO"; */
+"cus-d7-hKO.text" = "Categories";
+
+/* Class = "UITabBarItem"; title = "Movies"; ObjectID = "lxd-SR-kzv"; */
+"lxd-SR-kzv.title" = "Movies";
+
+/* Class = "UIButton"; normalTitle = "Select"; ObjectID = "m3r-gX-Gv8"; */
+"m3r-gX-Gv8.normalTitle" = "Select";
+
+/* Class = "UILabel"; text = "Duration"; ObjectID = "mQo-6s-Ttc"; */
+"mQo-6s-Ttc.text" = "Duration";
+
+/* Class = "UILabel"; text = "Sinopse"; ObjectID = "n0z-8f-Q3T"; */
+"n0z-8f-Q3T.text" = "Sinopse";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "oDc-SO-B8G"; */
+"oDc-SO-B8G.normalTitle" = "Save";
+
+/* Class = "UILabel"; text = "⭐️10/10"; ObjectID = "rc9-B3-dHs"; */
+"rc9-B3-dHs.text" = "⭐️10/10";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "uZb-oM-1U0"; */
+"uZb-oM-1U0.text" = "Title";
+
+/* Class = "UILabel"; text = "No movies found."; ObjectID = "wVh-6x-7fp"; */
+"wVh-6x-7fp.text" = "No movies found.";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "xev-uC-zTc"; */
+"xev-uC-zTc.text" = "Title";

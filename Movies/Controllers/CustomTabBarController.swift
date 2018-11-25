@@ -23,6 +23,7 @@ class CustomTabBarController: UITabBarController {
         self.viewControllers?.append(settingsNavigation)
 
         applyTheme(nil)
+        localize()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(applyTheme(_:)),
                                                name: UserDefaults.didChangeNotification, object: nil)
@@ -33,17 +34,11 @@ class CustomTabBarController: UITabBarController {
         super.viewWillAppear(animated)
     }
 
-    // MARK: - Methods
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func localize() {
+        guard let viewControllers = viewControllers else { return }
+        viewControllers[0].tabBarItem.title = Localization.moviesTitle
+        viewControllers[1].tabBarItem.title = Localization.settingsTitle
     }
-    */
 }
 
 extension CustomTabBarController: Themed {

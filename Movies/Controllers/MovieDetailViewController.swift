@@ -24,7 +24,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var trailerView: UIView!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var lblNoTrailer: UILabel!
-    
+
     // MARK: - Properties
     var movie: Movie!
     var player: AVPlayer?
@@ -37,6 +37,7 @@ class MovieDetailViewController: UIViewController {
         setViews()
         loadTrailer()
         applyTheme(nil)
+        localize()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(applyTheme(_:)),
                                                name: UserDefaults.didChangeNotification, object: nil)
@@ -64,8 +65,12 @@ class MovieDetailViewController: UIViewController {
         lblGenres.text = genreString
         lblDuration.text = movie.duration
         lblRating.text = movie.formattedRating
-        lblSinopse.text = movie.summary == "" ? "" : "Sinopse"
+        lblSinopse.text = movie.summary == "" ? "" : Localization.description
         lblDescription.text = movie.summary
+    }
+
+    func localize() {
+        title = movie.title
     }
 
     func loadTrailer() {
@@ -74,7 +79,9 @@ class MovieDetailViewController: UIViewController {
             if let url = url {
                 self?.setupTrailer(url)
             } else {
-                self?.lblNoTrailer.text = "No trailer found"
+                DispatchQueue.main.async {
+                    self?.lblNoTrailer.text = Localization.noTrailer
+                }
             }
         }
     }
@@ -118,7 +125,7 @@ class MovieDetailViewController: UIViewController {
 
     @objc func pauseVideo(_ sender: UITapGestureRecognizer?) {
         player?.pause()
-        playButton.isHidden = false
+        playButton.isHidden = !(lblNoTrailer.text == "")
     }
 
     // MARK: - Navigation Methods

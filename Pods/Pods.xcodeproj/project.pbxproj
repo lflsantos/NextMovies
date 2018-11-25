@@ -40,6 +40,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A823FCE7E915E233D1FA8AAB5526C8C /* SwiftLint */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SwiftLint;
+			path = SwiftLint;
+			sourceTree = "<group>";
+		};
 		168A64C12041A00FFBE2F77BDD868B33 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -48,12 +56,12 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		32A23E08346748F1793F899C5FF672C1 /* SwiftLint */ = {
+		461AD6DB81886058BC01CB88B6F0B2BB /* SwiftGen */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = SwiftLint;
-			path = SwiftLint;
+			name = SwiftGen;
+			path = SwiftGen;
 			sourceTree = "<group>";
 		};
 		588680963A35A00BEB9C87E70702E436 /* Pods-Movies */ = {
@@ -90,23 +98,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		676180087D56A1586868B41D5323572B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				461AD6DB81886058BC01CB88B6F0B2BB /* SwiftGen */,
+				0A823FCE7E915E233D1FA8AAB5526C8C /* SwiftLint */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				9758CC519AE2C57A9659FFC01AAD26F9 /* Pods */,
+				676180087D56A1586868B41D5323572B /* Pods */,
 				654FF3AE9F1CE059A87D22ED4F9CA6B5 /* Products */,
 				168A64C12041A00FFBE2F77BDD868B33 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		9758CC519AE2C57A9659FFC01AAD26F9 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				32A23E08346748F1793F899C5FF672C1 /* SwiftLint */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {

@@ -23,7 +23,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Settings"
+        localize()
         if let settingsView = settingsView {
             settingsView.swDarkMode.setOn(userDefaults.bool(forKey: SettingsKeys.darkMode),
                                            animated: false)
@@ -34,6 +34,10 @@ class SettingsViewController: UIViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(applyTheme(_:)),
                                                name: UserDefaults.didChangeNotification, object: nil)
+    }
+
+    func localize() {
+        title = Localization.settingsTitle
     }
 }
 

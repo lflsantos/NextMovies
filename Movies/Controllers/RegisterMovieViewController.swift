@@ -28,6 +28,10 @@ class RegisterMovieViewController: UIViewController {
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var lblImage: UILabel!
 
+    @IBOutlet weak var btSelectCategories: UIButton!
+    @IBOutlet weak var btSelectImage: UIButton!
+    @IBOutlet weak var btSave: CustomButton!
+
     // MARK: - Properties
     var movie: Movie!
     var genres: [Genre] = [] {
@@ -46,8 +50,7 @@ class RegisterMovieViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setTitle()
-
+        localize()
         applyTheme(nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(applyTheme(_:)),
@@ -69,12 +72,21 @@ class RegisterMovieViewController: UIViewController {
     }
 
     // MARK: - Methods
-    func setTitle() {
+    func localize() {
         if movie != nil {
-            title = "Edit Movie"
+            title = Localization.editMovieTitle
         } else {
-            title = "Add Movie"
+            title = Localization.addMovieTitle
         }
+        lblTitle.text = Localization.title
+        lblCategories.text = Localization.categories
+        lblDuration.text = Localization.duration
+        lblRating.text = Localization.rating
+        lblDescription.text = Localization.description
+        lblImage.text = Localization.image
+        btSelectCategories.setTitle(Localization.select, for: .normal)
+        btSelectImage.setTitle(Localization.selectImage, for: .normal)
+        btSave.setTitle(Localization.save, for: .normal)
     }
 
     func completeFields() {

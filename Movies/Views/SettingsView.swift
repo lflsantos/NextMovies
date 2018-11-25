@@ -19,7 +19,7 @@ final class SettingsView: UIView {
 
     let lblDarkMode: UILabel = {
         let label = UILabel()
-        label.text = "Dark Mode"
+        label.text = Localization.darkMode
         label.font = .body
         label.textColor = .body
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -28,7 +28,7 @@ final class SettingsView: UIView {
 
     let lblAutoPlay: UILabel = {
         let label = UILabel()
-        label.text = "Auto Play"
+        label.text = Localization.autoPlay
         label.font = .body
         label.textColor = .body
         label.translatesAutoresizingMaskIntoConstraints = false

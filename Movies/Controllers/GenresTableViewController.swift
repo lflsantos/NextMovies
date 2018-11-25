@@ -27,6 +27,7 @@ class GenresTableViewController: UITableViewController {
         selectGenres()
 
         applyTheme(nil)
+        localize()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(applyTheme(_:)),
                                                name: UserDefaults.didChangeNotification, object: nil)
@@ -47,6 +48,10 @@ class GenresTableViewController: UITableViewController {
     }
 
     // MARK: - Methods
+    func localize() {
+        title = Localization.genresTitle
+    }
+
     func loadGenres() {
         let fetchRequest: NSFetchRequest<Genre> = Genre.fetchRequest()
         let sortDescriptor = NSSortDescriptor(keyPath: \Genre.name, ascending: true)
@@ -65,7 +70,7 @@ class GenresTableViewController: UITableViewController {
         }
     }
 
-    func genreExists (_ name: String) -> Bool {
+    func genreExists (_ name: String, in genres: [Genre]) -> Bool {
         let fetchRequest: NSFetchRequest<Genre> = Genre.fetchRequest()
         let predicate = NSPredicate(format: "name == %@", name)
         fetchRequest.predicate = predicate
@@ -84,10 +89,6 @@ class GenresTableViewController: UITableViewController {
             let indexPath = fetchedResultController?.indexPath(forObject: genre)
             self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         }
-    }
-
-    func showGenreExistAlert() {
-
     }
 
     // MARK: - Table view data source
@@ -110,24 +111,26 @@ class GenresTableViewController: UITableViewController {
 
     // MARK: - IBActions
     @IBAction func addGenre(_ sender: Any) {
-        let alert = UIAlertController(title: "Gênero", message: "Digite o nome do novo gênero", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+        let alert = UIAlertController(title: Localization.genre,
+                                      message: Localization.newGenreText,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Localization.ok, style: .default, handler: { (_) in
             let genreName = alert.textFields?.first?.text?.capitalized ?? ""
-            if !self.genreExists(genreName) && genreName != "" {
+            if !self.genreExists(genreName, in: self.genres) && genreName != "" {
                 let genre = Genre(context: self.context)
                 genre.name = genreName
                 self.saveContext()
             } else {
-                let existentAlert = UIAlertController(title: "Atenção",
-                                                      message: "Gênero já existe",
+                let existentAlert = UIAlertController(title: Localization.warning,
+                                                      message: Localization.genreExists,
                                                       preferredStyle: .alert)
-                existentAlert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                existentAlert.addAction(UIAlertAction(title: Localization.ok, style: .cancel, handler: nil))
                 self.present(existentAlert, animated: true, completion: nil)
             }
         }))
-        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: Localization.cancel, style: .cancel, handler: nil))
         alert.addTextField { (textField) in
-            textField.placeholder = "Nome"
+            textField.placeholder = Localization.name
         }
         present(alert, animated: true, completion: nil)
     }

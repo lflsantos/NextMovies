@@ -23,6 +23,7 @@ class MoviesListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        localize()
         applyTheme(nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(applyTheme(_:)),
@@ -55,6 +56,11 @@ class MoviesListTableViewController: UITableViewController {
         }
 
         tableView.reloadData()
+    }
+
+    func localize() {
+        title = Localization.moviesTitle
+        lblNoMovies.text = Localization.noMovies
     }
 
     // MARK: - Table view data source

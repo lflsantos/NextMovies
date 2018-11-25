@@ -371,6 +371,9 @@
                     <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="never" id="Cvo-al-vIJ"/>
                     <size key="freeformSize" width="320" height="700"/>
                     <connections>
+                        <outlet property="btSave" destination="oDc-SO-B8G" id="ecb-In-Vmm"/>
+                        <outlet property="btSelectCategories" destination="m3r-gX-Gv8" id="jdc-Do-X27"/>
+                        <outlet property="btSelectImage" destination="GYU-Kq-iqa" id="gSw-Nb-F1I"/>
                         <outlet property="ivPoster" destination="95g-jC-2rD" id="ZZa-kG-6fG"/>
                         <outlet property="lblCategories" destination="cus-d7-hKO" id="IpI-tT-OAm"/>
                         <outlet property="lblDescription" destination="TTR-3X-30o" id="uVt-Bo-J17"/>
