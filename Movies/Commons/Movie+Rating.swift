@@ -10,6 +10,6 @@ import Foundation
 
 extension Movie {
     var formattedRating: String {
-        return "⭐️ \(rating)"
+        return String(format: "⭐️ %.1f", rating)
     }
 }

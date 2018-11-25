@@ -101,7 +101,7 @@ class RegisterMovieViewController: UIViewController {
         }
         lblGenres.text = genreString
 
-        lblRating.text = String(format: "%f.1", movie.rating)
+        lblRating.text = String(format: "%.1f", movie.rating)
         sliderRating.value = Float(movie.rating)
         tvDescription.text = movie.summary
         if let posterData = movie.poster {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 
 class MovieDetailViewController: UIViewController {
 
@@ -20,19 +21,31 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var lblRating: UILabel!
     @IBOutlet weak var lblSinopse: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
-
+    @IBOutlet weak var trailerView: UIView!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var lblNoTrailer: UILabel!
+    
     // MARK: - Properties
     var movie: Movie!
+    var player: AVPlayer?
+    let playerLayer = AVPlayerLayer()
 
     // MARK: - Super Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setViews()
+        loadTrailer()
         applyTheme(nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(applyTheme(_:)),
                                                name: UserDefaults.didChangeNotification, object: nil)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        pauseVideo(nil)
     }
 
     // MARK: - Methods
@@ -55,6 +68,59 @@ class MovieDetailViewController: UIViewController {
         lblDescription.text = movie.summary
     }
 
+    func loadTrailer() {
+        guard let title = movie.title else { return }
+        REST.requestTrailer(movieName: title) { [weak self] (success, url) in
+            if let url = url {
+                self?.setupTrailer(url)
+            } else {
+                self?.lblNoTrailer.text = "No trailer found"
+            }
+        }
+    }
+
+    func setupTrailer(_ url: URL) {
+        player = AVPlayer(url: url)
+        DispatchQueue.main.async {
+            self.playButton.isHidden = false
+
+            self.playerLayer.player = self.player
+            self.playerLayer.frame = self.trailerView.bounds
+
+            self.trailerView.layer.addSublayer(self.playerLayer)
+            self.playerLayer.isHidden = true
+            self.trailerView.bringSubviewToFront(self.playButton)
+
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(self.playerDidFinishPlaying(_:)),
+                                                   name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+                                                   object: self.player?.currentItem)
+
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.pauseVideo(_:)))
+            self.trailerView.addGestureRecognizer(tap)
+        }
+    }
+
+    // MARK: - Actions
+    @IBAction func play(_ sender: Any) {
+        guard let player = player else { return }
+        playerLayer.isHidden = false
+        playButton.isHidden = true
+        player.play()
+    }
+
+    // MARK: - Player
+    @objc func playerDidFinishPlaying(_ notification: NSNotification) {
+        playButton.isHidden = false
+        playerLayer.isHidden = true
+        playerLayer.removeFromSuperlayer()
+    }
+
+    @objc func pauseVideo(_ sender: UITapGestureRecognizer?) {
+        player?.pause()
+        playButton.isHidden = false
+    }
+
     // MARK: - Navigation Methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let registerMovieVC = segue.destination as? RegisterMovieViewController {
@@ -72,5 +138,6 @@ extension MovieDetailViewController: Themed {
         lblDuration.textColor = theme.textColor
         lblSinopse.textColor = theme.textColor
         lblDescription.textColor = theme.textColor
+        lblNoTrailer.textColor = theme.textColor
     }
 }
