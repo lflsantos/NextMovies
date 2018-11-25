@@ -9,32 +9,36 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-    typealias CustomView = SettingsView
+
+    // MARK: - Properties
+    var userDefaults = UserDefaults.standard
+    var settingsView: SettingsView?
 
     // MARK: - Super Methods
     override func loadView() {
-        view = CustomView(delegate: self)
+        settingsView = SettingsView(delegate: self)
+        view = settingsView
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0,
-                                                          width: UIScreen.main.bounds.size.width, height: 44))
-        navigationBar.barStyle = .black
-        navigationBar.prefersLargeTitles = true
-        let navigationTitle = UINavigationItem(title: "Settings")
-        navigationBar.setItems([navigationTitle], animated: false)
-        self.view.addSubview(navigationBar)
+        title = "Settings"
+        if let settingsView = settingsView {
+            settingsView.swDarkMode.setOn(userDefaults.bool(forKey: SettingsKeys.darkMode),
+                                           animated: false)
+            settingsView.swAutoPlay.setOn(userDefaults.bool(forKey: SettingsKeys.autoPlay),
+                                           animated: false)
+        }
     }
 }
 
 extension SettingsViewController: SettingsViewDelegate {
     func enabledDarkMode(_ enabled: Bool) {
-
+        userDefaults.set(enabled, forKey: SettingsKeys.darkMode)
     }
 
     func enabledAutoPlay(_ enabled: Bool) {
-
+        userDefaults.set(enabled, forKey: SettingsKeys.autoPlay)
     }
 }

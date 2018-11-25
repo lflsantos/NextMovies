@@ -22,8 +22,11 @@ class CustomTabBarController: UITabBarController {
 
         let settingsVC = SettingsViewController()
         let settingsTabBarItem = UITabBarItem(title: "Settings", image: nil, tag: 1)
-        settingsVC.tabBarItem = settingsTabBarItem
-        self.viewControllers?.append(settingsVC)
+        let settingsNavigation = UINavigationController(rootViewController: settingsVC)
+        settingsNavigation.tabBarItem = settingsTabBarItem
+        settingsNavigation.navigationBar.barStyle = .black
+        settingsNavigation.navigationBar.prefersLargeTitles = true
+        self.viewControllers?.append(settingsNavigation)
     }
 
     // MARK: - Methods
