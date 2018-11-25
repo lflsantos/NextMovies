@@ -30,6 +30,10 @@ class SettingsViewController: UIViewController {
             settingsView.swAutoPlay.setOn(userDefaults.bool(forKey: SettingsKeys.autoPlay),
                                            animated: false)
         }
+        applyTheme(nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applyTheme(_:)),
+                                               name: UserDefaults.didChangeNotification, object: nil)
     }
 }
 
@@ -40,5 +44,20 @@ extension SettingsViewController: SettingsViewDelegate {
 
     func enabledAutoPlay(_ enabled: Bool) {
         userDefaults.set(enabled, forKey: SettingsKeys.autoPlay)
+    }
+}
+
+extension SettingsViewController: Themed {
+    @objc func applyTheme(_ notification: Notification?) {
+        let theme = UserDefaults.standard.bool(forKey: SettingsKeys.darkMode) ? AppTheme.darkTheme : AppTheme.lightTheme
+        settingsView?.applyTheme(notification)
+
+        navigationController?.navigationBar.barStyle = theme.barStyle
+        navigationController?.navigationBar.tintColor = theme.barText
+
+        settingsView?.swDarkMode.setOn(userDefaults.bool(forKey: SettingsKeys.darkMode),
+                                      animated: false)
+        settingsView?.swAutoPlay.setOn(userDefaults.bool(forKey: SettingsKeys.autoPlay),
+                                      animated: false)
     }
 }

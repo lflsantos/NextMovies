@@ -14,19 +14,23 @@ class CustomTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        delegate = self
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
         let settingsVC = SettingsViewController()
         let settingsTabBarItem = UITabBarItem(title: "Settings", image: nil, tag: 1)
         let settingsNavigation = UINavigationController(rootViewController: settingsVC)
         settingsNavigation.tabBarItem = settingsTabBarItem
-        settingsNavigation.navigationBar.barStyle = .black
+        settingsNavigation.navigationBar.barStyle = .default
         settingsNavigation.navigationBar.prefersLargeTitles = true
         self.viewControllers?.append(settingsNavigation)
+
+        applyTheme(nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applyTheme(_:)),
+                                               name: UserDefaults.didChangeNotification, object: nil)
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
 
     // MARK: - Methods
@@ -42,6 +46,10 @@ class CustomTabBarController: UITabBarController {
     */
 }
 
-extension CustomTabBarController: UITabBarControllerDelegate {
-
+extension CustomTabBarController: Themed {
+    @objc func applyTheme(_ notification: Notification?) {
+        let theme = UserDefaults.standard.bool(forKey: SettingsKeys.darkMode) ? AppTheme.darkTheme : AppTheme.lightTheme
+        tabBar.barStyle = theme.barStyle
+        tabBar.tintColor = theme.barText
+    }
 }

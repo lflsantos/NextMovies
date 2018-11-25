@@ -31,6 +31,7 @@
 		76C7D3A921AA2D3D006DF32E /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C7D3A821AA2D3D006DF32E /* CustomTabBarController.swift */; };
 		76C7D3AB21AA4A68006DF32E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C7D3AA21AA4A68006DF32E /* Constants.swift */; };
 		76C7D3AD21AA4D47006DF32E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 76C7D3AC21AA4D47006DF32E /* Settings.bundle */; };
+		76C7D3B121AAFAD1006DF32E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C7D3B021AAFAD1006DF32E /* CustomButton.swift */; };
 		D56C2CDE157AC5849B1C78EA /* Pods_Movies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 513A4C9ABB62F6D2BE6D7F8B /* Pods_Movies.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		76C7D3A821AA2D3D006DF32E /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		76C7D3AA21AA4A68006DF32E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		76C7D3AC21AA4D47006DF32E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		76C7D3B021AAFAD1006DF32E /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		83E42AAAD2FE0EDAEACFD321 /* Pods-Movies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies.release.xcconfig"; path = "Pods/Target Support Files/Pods-Movies/Pods-Movies.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,6 +148,7 @@
 				761D1ED921925AA5004ABC78 /* MovieTableViewCell.swift */,
 				76C7D39E21AA0DCC006DF32E /* SettingsView.swift */,
 				761D1EC221925083004ABC78 /* Main.storyboard */,
+				76C7D3B021AAFAD1006DF32E /* CustomButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -179,8 +182,8 @@
 				764D98F9219F63BA00476EDB /* Movie+Rating.swift */,
 				76C7D39921A9E9B4006DF32E /* UIImage.swift */,
 				76C7D3A421AA1008006DF32E /* CustomViewController.swift */,
-				76C7D3A621AA10FA006DF32E /* AppStyle.swift */,
 				76C7D3AA21AA4A68006DF32E /* Constants.swift */,
+				76C7D3A621AA10FA006DF32E /* AppStyle.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				76C7D3AB21AA4A68006DF32E /* Constants.swift in Sources */,
 				761D1EC121925083004ABC78 /* MoviesListTableController.swift in Sources */,
 				761D1ED521925404004ABC78 /* CustomImageView.swift in Sources */,
+				76C7D3B121AAFAD1006DF32E /* CustomButton.swift in Sources */,
 				76C7D3A321AA0FB6006DF32E /* CodeView.swift in Sources */,
 				76707174219527FE000B1DFA /* RegisterMovieViewController.swift in Sources */,
 				761D1ED8219259C7004ABC78 /* MovieModel.swift in Sources */,

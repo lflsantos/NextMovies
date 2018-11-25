@@ -52,10 +52,7 @@ final class SettingsView: UIView {
         super.init(frame: UIScreen.main.bounds)
         self.delegate = delegate
         setup()
-    }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+        applyTheme(nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -74,6 +71,8 @@ final class SettingsView: UIView {
 
 extension SettingsView: CodeView {
     func setupComponents() {
+
+        self.backgroundColor = .lightBackgroundColor
         addSubview(lblDarkMode)
         addSubview(lblAutoPlay)
         addSubview(swDarkMode)
@@ -85,7 +84,6 @@ extension SettingsView: CodeView {
                                          constant: Margin.verticalVeryLarge).isActive = true
         lblDarkMode.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor,
                                              constant: Margin.horizontal).isActive = true
-//        lblDarkMode.trailingAnchor.constraint(equalTo: swDarkMode.leadingAnchor).isActive = true
 
         swDarkMode.topAnchor.constraint(equalTo: lblDarkMode.topAnchor).isActive = true
         swDarkMode.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor,
@@ -94,7 +92,6 @@ extension SettingsView: CodeView {
         lblAutoPlay.topAnchor.constraint(equalTo: lblDarkMode.topAnchor,
                                          constant: Margin.verticalVeryLarge).isActive = true
         lblAutoPlay.leadingAnchor.constraint(equalTo: lblDarkMode.leadingAnchor).isActive = true
-//        lblAutoPlay.trailingAnchor.constraint(equalTo: swAutoPlay.leadingAnchor).isActive = true
 
         swAutoPlay.topAnchor.constraint(equalTo: lblAutoPlay.topAnchor).isActive = true
         swAutoPlay.trailingAnchor.constraint(equalTo: swDarkMode.trailingAnchor).isActive = true
@@ -103,5 +100,14 @@ extension SettingsView: CodeView {
     func setupExtraConfiguration() {
         swDarkMode.addTarget(self, action: #selector(switchDarkMode), for: .valueChanged)
         swAutoPlay.addTarget(self, action: #selector(switchAutoPlay), for: .valueChanged)
+    }
+}
+
+extension SettingsView: Themed {
+    func applyTheme(_ notification: Notification?) {
+        let theme = UserDefaults.standard.bool(forKey: SettingsKeys.darkMode) ? AppTheme.darkTheme : AppTheme.lightTheme
+        backgroundColor = theme.backgroundColor
+        lblAutoPlay.textColor = theme.textColor
+        lblDarkMode.textColor = theme.textColor
     }
 }

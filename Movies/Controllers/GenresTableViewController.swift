@@ -25,6 +25,11 @@ class GenresTableViewController: UITableViewController {
         super.viewDidLoad()
         loadGenres()
         selectGenres()
+
+        applyTheme(nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applyTheme(_:)),
+                                               name: UserDefaults.didChangeNotification, object: nil)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -95,6 +100,11 @@ class GenresTableViewController: UITableViewController {
 
         let course = fetchedResultController?.object(at: indexPath)
         cell.textLabel?.text = course?.name
+
+        let theme = UserDefaults.standard.bool(forKey: SettingsKeys.darkMode) ? AppTheme.darkTheme : AppTheme.lightTheme
+        cell.backgroundColor = theme.backgroundColor
+        cell.textLabel?.textColor = theme.textColor
+
         return cell
     }
 
@@ -129,6 +139,16 @@ extension GenresTableViewController: NSFetchedResultsControllerDelegate {
                     at indexPath: IndexPath?,
                     for type: NSFetchedResultsChangeType,
                     newIndexPath: IndexPath?) {
+        tableView.reloadData()
+    }
+}
+
+extension GenresTableViewController: Themed {
+    @objc func applyTheme(_ notification: Notification?) {
+        let theme = UserDefaults.standard.bool(forKey: SettingsKeys.darkMode) ? AppTheme.darkTheme : AppTheme.lightTheme
+        view.backgroundColor = theme.backgroundColor
+        tableView.backgroundColor = theme.backgroundColor
+        tableView.separatorColor = theme.separatorColor
         tableView.reloadData()
     }
 }

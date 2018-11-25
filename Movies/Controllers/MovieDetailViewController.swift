@@ -11,11 +11,7 @@ import UIKit
 class MovieDetailViewController: UIViewController {
 
     // MARK: - IBOutlets
-    @IBOutlet weak var scrollView: UIScrollView! {
-        didSet {
-            scrollView.delegate = self
-        }
-    }
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var ivPoster: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
@@ -33,6 +29,10 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
 
         setViews()
+        applyTheme(nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applyTheme(_:)),
+                                               name: UserDefaults.didChangeNotification, object: nil)
     }
 
     // MARK: - Methods
@@ -63,13 +63,14 @@ class MovieDetailViewController: UIViewController {
     }
 }
 
-extension MovieDetailViewController: UIScrollViewDelegate {
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        var alpha = (scrollView.contentOffset.y/scrollView.bounds.size.height) + 0.2
-        alpha = alpha > 0.7 ? 0.7 : alpha
-        alpha = alpha < 0.2 ? 0.2 : alpha
-
-        self.contentView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: alpha)
+extension MovieDetailViewController: Themed {
+    @objc func applyTheme(_ notification: Notification?) {
+        let theme = UserDefaults.standard.bool(forKey: SettingsKeys.darkMode) ? AppTheme.darkTheme : AppTheme.lightTheme
+        view.backgroundColor = theme.backgroundColor
+        lblTitle.textColor = theme.textColor
+        lblGenres.textColor = theme.textColor
+        lblDuration.textColor = theme.textColor
+        lblSinopse.textColor = theme.textColor
+        lblDescription.textColor = theme.textColor
     }
 }

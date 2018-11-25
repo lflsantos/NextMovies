@@ -13,6 +13,7 @@ class MoviesListTableViewController: UITableViewController {
 
     // MARK: - IBOutlets
     @IBOutlet var emptyMoviesView: UIView!
+    @IBOutlet weak var lblNoMovies: UILabel!
 
     // MARK: - Properties
     var fetchedResultController: NSFetchedResultsController<Movie>?
@@ -21,6 +22,11 @@ class MoviesListTableViewController: UITableViewController {
     // MARK: - Super Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        applyTheme(nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applyTheme(_:)),
+                                               name: UserDefaults.didChangeNotification, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -48,20 +54,7 @@ class MoviesListTableViewController: UITableViewController {
             print(error)
         }
 
-    }
-
-    private func loadMovies() {
-        if let path = Bundle.main.path(forResource: "Movies.json", ofType: nil) {
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            do {
-                let movieData = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                movies = try decoder.decode([MovieModel].self, from: movieData)
-                tableView.reloadData()
-            } catch {
-                print(error)
-            }
-        }
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -70,6 +63,8 @@ class MoviesListTableViewController: UITableViewController {
         if nMovies == 0 {
             emptyMoviesView.frame = view.bounds
             self.view.addSubview(emptyMoviesView)
+        } else {
+            emptyMoviesView.removeFromSuperview()
         }
         return nMovies
     }
@@ -113,6 +108,20 @@ extension MoviesListTableViewController: NSFetchedResultsControllerDelegate {
                     didChange anObject: Any, at indexPath: IndexPath?,
                     for type: NSFetchedResultsChangeType,
                     newIndexPath: IndexPath?) {
+        tableView.reloadData()
+    }
+}
+
+extension MoviesListTableViewController: Themed {
+    @objc func applyTheme(_ notification: Notification?) {
+        let theme = UserDefaults.standard.bool(forKey: SettingsKeys.darkMode) ? AppTheme.darkTheme : AppTheme.lightTheme
+        view.backgroundColor = theme.backgroundColor
+        tableView.separatorColor = theme.separatorColor
+        emptyMoviesView.backgroundColor = theme.backgroundColor
+        lblNoMovies.textColor = theme.textColor
+        navigationController?.navigationBar.barStyle = theme.barStyle
+        navigationController?.navigationBar.tintColor = theme.barText
+
         tableView.reloadData()
     }
 }

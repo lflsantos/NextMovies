@@ -13,6 +13,7 @@ extension UIColor {
     static let greyishBrown = UIColor(r: 76, g: 76, b: 76)
     static let title = UIColor.cerise
     static let body = UIColor.white
+    static let lightBackgroundColor = UIColor(r: 193, g: 193, b: 193)
 }
 
 extension UIColor {
@@ -31,8 +32,38 @@ extension UIFont {
 
 enum Margin {
     static let horizontal: CGFloat = 24
-    //    static let verticalSmall: CGFloat = 8
-    //    static let verticalNormal: CGFloat = 16
     static let verticalLarge: CGFloat = 24
     static let verticalVeryLarge: CGFloat = 72
+}
+
+struct AppTheme {
+    var statusBarStyle: UIStatusBarStyle
+    var barStyle: UIBarStyle
+    var barText: UIColor
+    var backgroundColor: UIColor
+    var separatorColor: UIColor
+    var textColor: UIColor
+    var titleColor: UIColor
+
+    static let lightTheme = AppTheme(
+        statusBarStyle: .default,
+        barStyle: .default,
+        barText: .black,
+        backgroundColor: .lightBackgroundColor,
+        separatorColor: .black,
+        textColor: .darkText,
+        titleColor: .darkText)
+
+    static let darkTheme = AppTheme(
+        statusBarStyle: .lightContent,
+        barStyle: .black,
+        barText: .white,
+        backgroundColor: .darkGray,
+        separatorColor: .white,
+        textColor: .lightText,
+        titleColor: .lightText)
+}
+
+protocol Themed {
+    func applyTheme(_ notification: Notification?)
 }

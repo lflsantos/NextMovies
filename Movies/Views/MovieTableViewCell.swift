@@ -34,12 +34,14 @@ class MovieTableViewCell: UITableViewCell {
         if let posterData = movie.poster {
             ivPoster.image = UIImage(data: posterData)
         }
+
+        applyTheme()
     }
 
-    func prepareCell (with movie: MovieModel) {
-        lblTitle.text = movie.title
-        lblSinopse.text = movie.summary
-        lblRating.text = movie.formattedRating
-        ivPoster.image = UIImage(named: movie.image ?? "")
+    func applyTheme() {
+        let theme = UserDefaults.standard.bool(forKey: SettingsKeys.darkMode) ? AppTheme.darkTheme : AppTheme.lightTheme
+        contentView.backgroundColor = theme.backgroundColor
+        lblTitle.textColor = theme.textColor
+        lblSinopse.textColor = theme.textColor
     }
 }

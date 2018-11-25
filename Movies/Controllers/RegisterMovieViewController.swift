@@ -21,6 +21,13 @@ class RegisterMovieViewController: UIViewController {
     @IBOutlet weak var tvDescription: UITextView!
     @IBOutlet weak var ivPoster: UIImageView!
 
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblCategories: UILabel!
+    @IBOutlet weak var lblDuration: UILabel!
+    @IBOutlet weak var lblRatingTitle: UILabel!
+    @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var lblImage: UILabel!
+
     // MARK: - Properties
     var movie: Movie!
     var genres: [Genre] = [] {
@@ -40,6 +47,11 @@ class RegisterMovieViewController: UIViewController {
         super.viewDidLoad()
 
         setTitle()
+
+        applyTheme(nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applyTheme(_:)),
+                                               name: UserDefaults.didChangeNotification, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -198,5 +210,20 @@ extension RegisterMovieViewController: UIImagePickerControllerDelegate, UINaviga
 extension RegisterMovieViewController: GenreSelectionDelegate {
     func didSelect(Genres genres: [Genre]) {
         self.genres = genres
+    }
+}
+
+extension RegisterMovieViewController: Themed {
+    @objc func applyTheme(_ notification: Notification?) {
+        let theme = UserDefaults.standard.bool(forKey: SettingsKeys.darkMode) ? AppTheme.darkTheme : AppTheme.lightTheme
+        view.backgroundColor = theme.backgroundColor
+        lblRating.textColor = theme.textColor
+        lblGenres.textColor = theme.textColor
+        lblTitle.textColor = theme.textColor
+        lblCategories.textColor = theme.textColor
+        lblDuration.textColor = theme.textColor
+        lblRatingTitle.textColor = theme.textColor
+        lblDescription.textColor = theme.textColor
+        lblImage.textColor = theme.textColor
     }
 }
