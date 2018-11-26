@@ -1,3 +1,4 @@
+// swiftlint:disable all
 // Generated using SwiftGen, by O.Halligon — https://github.com/SwiftGen/SwiftGen
 
 import Foundation
@@ -5,7 +6,9 @@ import Foundation
 // swiftlint:disable superfluous_disable_command
 // swiftlint:disable file_length
 
-// swiftlint:disable identifier_name line_length type_body_length
+// MARK: - Strings
+
+// swiftlint:disable function_parameter_count identifier_name line_length type_body_length
 internal enum Localization {
   /// Add Movie
   internal static let addMovieTitle = Localization.tr("Localizable", "ADD_MOVIE_TITLE")
@@ -60,7 +63,9 @@ internal enum Localization {
   /// Warning
   internal static let warning = Localization.tr("Localizable", "WARNING")
 }
-// swiftlint:enable identifier_name line_length type_body_length
+// swiftlint:enable function_parameter_count identifier_name line_length type_body_length
+
+// MARK: - Implementation Details
 
 extension Localization {
   private static func tr(_ table: String, _ key: String, _ args: CVarArg...) -> String {

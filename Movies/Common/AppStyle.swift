@@ -30,6 +30,13 @@ extension UIFont {
     static let body = UIFont.systemFont(ofSize: 17)
 }
 
+extension UIImage {
+    static let darkSettingsImage = UIImage(named: "ic_tab_settings_dark")
+    static let darkMoviesImage = UIImage(named: "ic_tab_movies_dark")
+    static let lightSettingsImage = UIImage(named: "ic_tab_settings_light")
+    static let lightMoviesImage = UIImage(named: "ic_tab_movies_light")
+}
+
 enum Margin {
     static let horizontal: CGFloat = 24
     static let verticalLarge: CGFloat = 24
@@ -44,6 +51,8 @@ struct AppTheme {
     var separatorColor: UIColor
     var textColor: UIColor
     var titleColor: UIColor
+    var settingsTabImage: UIImage?
+    var moviesTabImage: UIImage?
 
     static let lightTheme = AppTheme(
         statusBarStyle: .default,
@@ -52,7 +61,9 @@ struct AppTheme {
         backgroundColor: .lightBackgroundColor,
         separatorColor: .black,
         textColor: .darkText,
-        titleColor: .darkText)
+        titleColor: .darkText,
+        settingsTabImage: .lightSettingsImage,
+        moviesTabImage: .lightMoviesImage)
 
     static let darkTheme = AppTheme(
         statusBarStyle: .lightContent,
@@ -61,7 +72,9 @@ struct AppTheme {
         backgroundColor: .darkGray,
         separatorColor: .white,
         textColor: .lightText,
-        titleColor: .lightText)
+        titleColor: .lightText,
+        settingsTabImage: .darkSettingsImage,
+        moviesTabImage: .darkMoviesImage)
 }
 
 protocol Themed {

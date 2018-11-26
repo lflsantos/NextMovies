@@ -46,5 +46,9 @@ extension CustomTabBarController: Themed {
         let theme = UserDefaults.standard.bool(forKey: SettingsKeys.darkMode) ? AppTheme.darkTheme : AppTheme.lightTheme
         tabBar.barStyle = theme.barStyle
         tabBar.tintColor = theme.barText
+
+        guard let viewControllers = viewControllers else { return }
+        viewControllers[0].tabBarItem.image = theme.moviesTabImage
+        viewControllers[1].tabBarItem.image = theme.settingsTabImage
     }
 }

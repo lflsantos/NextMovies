@@ -75,7 +75,7 @@ class MovieDetailViewController: UIViewController {
 
     func loadTrailer() {
         guard let title = movie.title else { return }
-        REST.requestTrailer(movieName: title) { [weak self] (success, url) in
+        REST.requestTrailer(movieName: title) { [weak self] (_, url) in
             if let url = url {
                 self?.setupTrailer(url)
             } else {
