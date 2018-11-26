@@ -9,4 +9,5 @@ This simple MVC app uses CoreData to manage a CRUD of a local movie database.
  - Add feature to let user create local notification
  - Unity Tests
  - UI Tests
+ - Implement one ViewCode using Cartography
  - Review App Structure
